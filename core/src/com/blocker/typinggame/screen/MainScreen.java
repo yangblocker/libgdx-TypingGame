@@ -1,4 +1,4 @@
-package com.blocker.typinggame;
+package com.blocker.typinggame.screen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -13,7 +13,9 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.TimeUtils;
-import com.blocker.typinggame.act.WordGroup;
+import com.blocker.typinggame.TypingGame;
+import com.blocker.typinggame.entity.Word;
+import com.blocker.typinggame.res.Res;
 
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -26,7 +28,7 @@ import java.util.Random;
 public class MainScreen extends ScreenAdapter {
 
     TypingGame game;
-    private List<WordGroup> wordList;
+    private List<Word> wordList;
     Random random;
     Music bgMusic;
     Sound hitSound;
@@ -55,7 +57,7 @@ public class MainScreen extends ScreenAdapter {
     }
 
     private void spawnWordDrop() {
-        WordGroup group = new WordGroup();
+        Word group = new Word();
         group.setWordX(MathUtils.random(Res.WORD_WIDTH / 2, (int) Res.FIX_WORLD_WIDTH - Res.WORD_WIDTH));
         group.setWordY((int) Res.FIX_WORLD_HEIGHT);
         group.setPixmap(getRandomPixmap());
@@ -113,7 +115,7 @@ public class MainScreen extends ScreenAdapter {
 
         game.bitmapFont.setColor(Color.YELLOW);
         game.bitmapFont.getData().setScale(1.0f);
-        for (WordGroup group : wordList) {
+        for (Word group : wordList) {
             game.batch.draw(group.getTexture(), group.getWordX(), group.getWordY());
             game.bitmapFont.draw(game.batch, String.valueOf(group.getValue()), group.getWordX(), group.getWordY());
         }
@@ -125,14 +127,14 @@ public class MainScreen extends ScreenAdapter {
             spawnWordDrop();
         }
 
-        Iterator<WordGroup> iter = wordList.iterator();
+        Iterator<Word> iter = wordList.iterator();
         while (iter.hasNext()) {
-            WordGroup wordGroup = iter.next();
-            wordGroup.setWordY((int) (wordGroup.getWordY() - 200 * Gdx.graphics.getDeltaTime()));
-            if (wordGroup.getWordY() < 0) {
+            Word word = iter.next();
+            word.setWordY((int) (word.getWordY() - 200 * Gdx.graphics.getDeltaTime()));
+            if (word.getWordY() < 0) {
                 iter.remove();
-                wordGroup.getTexture().dispose();
-                wordGroup.getPixmap().dispose();
+                word.getTexture().dispose();
+                word.getPixmap().dispose();
             }
         }
     }
@@ -144,7 +146,7 @@ public class MainScreen extends ScreenAdapter {
         @Override
         public boolean keyDown(int keycode) {
 //            Gdx.app.log(TAG, "keycode: " + Input.Keys.toString(keycode));
-            WordGroup word = null;
+            Word word = null;
             if (!wordList.isEmpty()) {
                 word = wordList.get(0);
             }

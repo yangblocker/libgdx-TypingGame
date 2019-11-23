@@ -11,14 +11,16 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.math.MathUtils;
+import com.blocker.typinggame.res.Res;
+import com.blocker.typinggame.screen.SplashScreen;
 
 public class TypingGame extends Game {
-	SpriteBatch batch;
-	BitmapFont bitmapFont;
+	public SpriteBatch batch;
+	public BitmapFont bitmapFont;
 
 	FreeTypeFontGenerator generator;
 
-	AssetManager assetManager;
+	public AssetManager assetManager;
 
 	@Override
 	public void create () {

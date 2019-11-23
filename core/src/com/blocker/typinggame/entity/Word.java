@@ -1,4 +1,4 @@
-package com.blocker.typinggame.act;
+package com.blocker.typinggame.entity;
 
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 /**
  * Created by yangwen on 2019-11-20
  */
-public class WordGroup {
+public class Word {
 
     Texture texture;
     Character value;

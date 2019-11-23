@@ -1,4 +1,4 @@
-package com.blocker.typinggame;
+package com.blocker.typinggame.res;
 
 /**
  * Created by yangwen on 2019-11-20
